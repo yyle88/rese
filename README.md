@@ -11,9 +11,13 @@
 
 **rese** stands for **res** (result) + **err** (error).
 
+---
+
 ## CHINESE README
 
 [中文说明](README.zh.md)
+
+---
 
 ## Installation
 
@@ -118,3 +122,11 @@ If you find this package helpful, give it a star on GitHub!
 **Thank you for your support!**
 
 **Happy Coding with `rese`!** 🎉
+
+---
+
+## See stars
+
+[![see stars](https://starchart.cc/yyle88/rese.svg?variant=adaptive)](https://starchart.cc/yyle88/rese)
+
+---

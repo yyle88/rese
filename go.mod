@@ -5,7 +5,7 @@ go 1.22.8
 require (
 	github.com/stretchr/testify v1.10.0
 	github.com/yyle88/done v1.0.18
-	github.com/yyle88/must v0.0.9
+	github.com/yyle88/must v0.0.10
 )
 
 require (
