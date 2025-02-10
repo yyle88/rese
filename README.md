@@ -125,8 +125,8 @@ If you find this package helpful, give it a star on GitHub!
 
 ---
 
-## See stars
+## Starring
 
-[![see stars](https://starchart.cc/yyle88/rese.svg?variant=adaptive)](https://starchart.cc/yyle88/rese)
+[![starring](https://starchart.cc/yyle88/rese.svg?variant=adaptive)](https://starchart.cc/yyle88/rese)
 
 ---
