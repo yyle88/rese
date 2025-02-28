@@ -9,6 +9,28 @@
 
 **rese** simplifies Go error handling and result extraction for multi-value function calls. It combines error and result checks into a single operation.
 
+Example, the common way to handle errors in Go is like this:
+```
+num, err := run()
+if err != nil {
+    panic(err)
+}
+
+ans, err := run2()
+if err != nil {
+    panic(err)
+}
+
+res := num + ans
+fmt.Println(res)
+```
+
+Simple(Use **rese** package):
+```
+res := rese.V1(run()) + rese.V1(run2())
+fmt.Println(res)
+```
+
 **rese** stands for **res** (result) + **err** (error).
 
 ---
@@ -16,6 +38,74 @@
 ## CHINESE README
 
 [中文说明](README.zh.md)
+
+---
+
+## Examples
+
+### Example 1: Simple error and result checking with `V1`
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/yyle88/rese"
+)
+
+func run() (string, error) {
+	return "Hello, World!", nil
+}
+
+func main() {
+	// Using V1 to check for error and get the result
+	result := rese.V1(run())
+	fmt.Println(result) // Outputs: Hello, World!
+}
+```
+
+### Example 2: Ensuring non-nil pointers with `P1`
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/yyle88/rese"
+)
+
+func getSomething() (*int64, error) {
+	v := int64(42)
+	return &v, nil
+}
+
+func main() {
+	// Using P1 to check error and ensure non-nil pointer
+	ptr := rese.P1(getSomething())
+	fmt.Println(*ptr) // Outputs: 42
+}
+```
+
+### Example 3: Zero-value checking with `C1`
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/yyle88/rese"
+)
+
+func getInt() (int, error) {
+	return 20, nil
+}
+
+func main() {
+	// Using C1 to check error and ensure non-zero result
+	num := rese.C1(getInt())
+	fmt.Println("Received:", num) // Outputs: 20
+}
+```
 
 ---
 
@@ -41,71 +131,7 @@ go get github.com/yyle88/rese
 | `C1[T1 comparable](v1 T1, err error) T1`                  | Checks the error, checks that `v1` is not a zero value, and returns `v1`.                   | Returns `v1` of type `T1`                                |
 | `C2[T1, T2 comparable](v1 T1, v2 T2, err error) (T1, T2)` | Checks the error, checks that `v1` and `v2` are not zero values, and returns `v1` and `v2`. | Returns `v1` of type `T1` and `v2` of type `T2`          |
 
-## Examples
-
-### Example 1: Simple error and result checking with `V1`
-
-```go
-package main
-
-import (
-	"fmt"
-	"github.com/yyle88/rese"
-)
-
-func run() (string, error) {
-	return "Hello, World!", nil
-}
-
-func main() {
-	// Using V1 to check for error and get the result
-	result := rese.V1(run()) 
-	fmt.Println(result) // Outputs: Hello, World!
-}
-```
-
-### Example 2: Ensuring non-nil pointers with `P1`
-
-```go
-package main
-
-import (
-	"fmt"
-	"github.com/yyle88/rese"
-)
-
-func getSomething() (*int64, error) {
-	v := int64(42)
-	return &v, nil
-}
-
-func main() {
-	// Using P1 to check error and ensure non-nil pointer
-	ptr := rese.P1(getSomething()) 
-	fmt.Println(*ptr) // Outputs: 42
-}
-```
-
-### Example 3: Zero-value checking with `C1`
-
-```go
-package main
-
-import (
-	"fmt"
-	"github.com/yyle88/rese"
-)
-
-func getInt() (int, error) {
-	return 20, nil
-}
-
-func main() {
-	// Using C1 to check error and ensure non-zero result
-	num := rese.C1(getInt())
-	fmt.Println("Received:", num) // Outputs: 20
-}
-```
+---
 
 ## License
 

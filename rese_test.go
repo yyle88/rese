@@ -426,3 +426,128 @@ func TestC9(t *testing.T) {
 	require.Equal(t, complex64(complex(5, 6)), v8)
 	require.Equal(t, complex(7, 8), v9)
 }
+
+func TestA0(t *testing.T) {
+	run := func() error {
+		return nil
+	}
+
+	rese.A0(run())
+}
+
+func TestA1(t *testing.T) {
+	run := func() ([]string, error) {
+		return []string{"a"}, nil
+	}
+
+	v1 := rese.A1(run())
+	require.Equal(t, []string{"a"}, v1)
+}
+
+func TestA2(t *testing.T) {
+	run := func() ([]string, []int, error) {
+		return []string{"a"}, []int{1}, nil
+	}
+
+	v1, v2 := rese.A2(run())
+	require.Equal(t, []string{"a"}, v1)
+	require.Equal(t, []int{1}, v2)
+}
+
+func TestA3(t *testing.T) {
+	run := func() ([]string, []int, []bool, error) {
+		return []string{"a"}, []int{1}, []bool{true}, nil
+	}
+
+	v1, v2, v3 := rese.A3(run())
+	require.Equal(t, []string{"a"}, v1)
+	require.Equal(t, []int{1}, v2)
+	require.Equal(t, []bool{true}, v3)
+}
+
+func TestA4(t *testing.T) {
+	run := func() ([]string, []int, []bool, []float64, error) {
+		return []string{"a"}, []int{1}, []bool{true}, []float64{3.14}, nil
+	}
+
+	v1, v2, v3, v4 := rese.A4(run())
+	require.Equal(t, []string{"a"}, v1)
+	require.Equal(t, []int{1}, v2)
+	require.Equal(t, []bool{true}, v3)
+	require.Equal(t, []float64{3.14}, v4)
+}
+
+func TestA5(t *testing.T) {
+	run := func() ([]string, []int, []bool, []float64, []rune, error) {
+		return []string{"a"}, []int{1}, []bool{true}, []float64{3.14}, []rune{'x'}, nil
+	}
+
+	v1, v2, v3, v4, v5 := rese.A5(run())
+	require.Equal(t, []string{"a"}, v1)
+	require.Equal(t, []int{1}, v2)
+	require.Equal(t, []bool{true}, v3)
+	require.Equal(t, []float64{3.14}, v4)
+	require.Equal(t, []rune{'x'}, v5)
+}
+
+func TestA6(t *testing.T) {
+	run := func() ([]string, []int, []bool, []float64, []rune, []byte, error) {
+		return []string{"a"}, []int{1}, []bool{true}, []float64{3.14}, []rune{'x'}, []byte{255}, nil
+	}
+
+	v1, v2, v3, v4, v5, v6 := rese.A6(run())
+	require.Equal(t, []string{"a"}, v1)
+	require.Equal(t, []int{1}, v2)
+	require.Equal(t, []bool{true}, v3)
+	require.Equal(t, []float64{3.14}, v4)
+	require.Equal(t, []rune{'x'}, v5)
+	require.Equal(t, []byte{255}, v6)
+}
+
+func TestA7(t *testing.T) {
+	run := func() ([]string, []int, []bool, []float64, []rune, []byte, []uint, error) {
+		return []string{"a"}, []int{1}, []bool{true}, []float64{3.14}, []rune{'x'}, []byte{255}, []uint{2}, nil
+	}
+
+	v1, v2, v3, v4, v5, v6, v7 := rese.A7(run())
+	require.Equal(t, []string{"a"}, v1)
+	require.Equal(t, []int{1}, v2)
+	require.Equal(t, []bool{true}, v3)
+	require.Equal(t, []float64{3.14}, v4)
+	require.Equal(t, []rune{'x'}, v5)
+	require.Equal(t, []byte{255}, v6)
+	require.Equal(t, []uint{2}, v7)
+}
+
+func TestA8(t *testing.T) {
+	run := func() ([]string, []int, []bool, []float64, []rune, []byte, []uint, []int64, error) {
+		return []string{"a"}, []int{1}, []bool{true}, []float64{3.14}, []rune{'x'}, []byte{255}, []uint{2}, []int64{123456789}, nil
+	}
+
+	v1, v2, v3, v4, v5, v6, v7, v8 := rese.A8(run())
+	require.Equal(t, []string{"a"}, v1)
+	require.Equal(t, []int{1}, v2)
+	require.Equal(t, []bool{true}, v3)
+	require.Equal(t, []float64{3.14}, v4)
+	require.Equal(t, []rune{'x'}, v5)
+	require.Equal(t, []byte{255}, v6)
+	require.Equal(t, []uint{2}, v7)
+	require.Equal(t, []int64{123456789}, v8)
+}
+
+func TestA9(t *testing.T) {
+	run := func() ([]string, []int, []bool, []float64, []rune, []byte, []uint, []int64, []uint32, error) {
+		return []string{"a"}, []int{1}, []bool{true}, []float64{3.14}, []rune{'x'}, []byte{255}, []uint{2}, []int64{123456789}, []uint32{987654321}, nil
+	}
+
+	v1, v2, v3, v4, v5, v6, v7, v8, v9 := rese.A9(run())
+	require.Equal(t, []string{"a"}, v1)
+	require.Equal(t, []int{1}, v2)
+	require.Equal(t, []bool{true}, v3)
+	require.Equal(t, []float64{3.14}, v4)
+	require.Equal(t, []rune{'x'}, v5)
+	require.Equal(t, []byte{255}, v6)
+	require.Equal(t, []uint{2}, v7)
+	require.Equal(t, []int64{123456789}, v8)
+	require.Equal(t, []uint32{987654321}, v9)
+}

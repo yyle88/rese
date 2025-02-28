@@ -1,6 +1,28 @@
 # rese
 
-**rese** 简化了 Go 中的错误处理和多值函数返回值提取。它将错误检查和结果提取合并为一个操作。
+**rese** 简化 Go 中的错误处理，使您可以直接使用结果而无需检查错误。
+
+比如，在Go中比较常见的错误处理方式是这样的：
+```
+num, err := run()
+if err != nil {
+    panic(err)
+}
+
+ans, err := run2()
+if err != nil {
+    panic(err)
+}
+
+res := num + ans
+fmt.Println(res)
+```
+
+简化逻辑(使用 **rese** 工具)：
+```
+res := rese.V1(run()) + rese.V1(run2())
+fmt.Println(res)
+```
 
 **rese** 代表 **res**（结果）+ **err**（错误）。
 
@@ -8,27 +30,7 @@
 
 [English documentation](README.md)
 
-## 安装
-
-```bash
-go get github.com/yyle88/rese
-```
-
 ---
-
-## 函数
-
-| 函数                                                        | 作用                                               | 返回值                                 |
-|-----------------------------------------------------------|--------------------------------------------------|-------------------------------------|
-| `V0(err error)`                                           | 检查错误，如果错误不为 `nil` 则触发 panic。没有返回值。               | 无                                   |
-| `V1[T1 any](v1 T1, err error) T1`                         | 检查错误，如果没有错误，返回 `v1`。                             | 返回类型为 `T1` 的 `v1`                   |
-| `V2[T1, T2 any](v1 T1, v2 T2, err error) (T1, T2)`        | 检查错误，如果没有错误，返回 `v1` 和 `v2`。                      | 返回类型为 `T1` 的 `v1` 和 类型为 `T2` 的 `v2` |
-| `P0(err error)`                                           | 检查错误，如果错误不为 `nil` 则触发 panic。没有返回值。               | 无                                   |
-| `P1[T1 any](v1 *T1, err error) *T1`                       | 检查错误，检查 `v1` 是否为非 `nil`，并返回 `v1`。                | 返回类型为 `T1` 的 `v1` 的指针               |
-| `P2[T1, T2 any](v1 *T1, v2 *T2, err error) (*T1, *T2)`    | 检查错误，检查 `v1` 和 `v2` 是否为非 `nil`，并返回 `v1` 和 `v2`。  | 返回类型为 `T1` 和 `T2` 的 `v1` 和 `v2` 的指针 |
-| `C0(err error)`                                           | 检查错误，如果错误不为 `nil` 则触发 panic。没有返回值。               | 无                                   |
-| `C1[T1 comparable](v1 T1, err error) T1`                  | 检查错误，检查 `v1` 是否为零值，如果不是零值，返回 `v1`。               | 返回类型为 `T1` 的 `v1`                   |
-| `C2[T1, T2 comparable](v1 T1, v2 T2, err error) (T1, T2)` | 检查错误，检查 `v1` 和 `v2` 是否为零值，如果不是零值，返回 `v1` 和 `v2`。 | 返回类型为 `T1` 的 `v1` 和 类型为 `T2` 的 `v2` |
 
 ## 示例
 
@@ -48,7 +50,7 @@ func run() (string, error) {
 
 func main() {
 	// 使用 V1 来检查错误并获取结果
-	result := rese.V1(run()) 
+	result := rese.V1(run())
 	fmt.Println(result) // 输出: Hello, World!
 }
 ```
@@ -70,7 +72,7 @@ func getSomething() (*int64, error) {
 
 func main() {
 	// 使用 P1 来检查错误并确保指针非 `nil`
-	ptr := rese.P1(getSomething()) 
+	ptr := rese.P1(getSomething())
 	fmt.Println(*ptr) // 输出: 42
 }
 ```
@@ -95,6 +97,30 @@ func main() {
 	fmt.Println("Received:", num) // 输出: 20
 }
 ```
+
+## 安装
+
+```bash
+go get github.com/yyle88/rese
+```
+
+---
+
+## 函数
+
+| 函数                                                        | 作用                                               | 返回值                                 |
+|-----------------------------------------------------------|--------------------------------------------------|-------------------------------------|
+| `V0(err error)`                                           | 检查错误，如果错误不为 `nil` 则触发 panic。没有返回值。               | 无                                   |
+| `V1[T1 any](v1 T1, err error) T1`                         | 检查错误，如果没有错误，返回 `v1`。                             | 返回类型为 `T1` 的 `v1`                   |
+| `V2[T1, T2 any](v1 T1, v2 T2, err error) (T1, T2)`        | 检查错误，如果没有错误，返回 `v1` 和 `v2`。                      | 返回类型为 `T1` 的 `v1` 和 类型为 `T2` 的 `v2` |
+| `P0(err error)`                                           | 检查错误，如果错误不为 `nil` 则触发 panic。没有返回值。               | 无                                   |
+| `P1[T1 any](v1 *T1, err error) *T1`                       | 检查错误，检查 `v1` 是否为非 `nil`，并返回 `v1`。                | 返回类型为 `T1` 的 `v1` 的指针               |
+| `P2[T1, T2 any](v1 *T1, v2 *T2, err error) (*T1, *T2)`    | 检查错误，检查 `v1` 和 `v2` 是否为非 `nil`，并返回 `v1` 和 `v2`。  | 返回类型为 `T1` 和 `T2` 的 `v1` 和 `v2` 的指针 |
+| `C0(err error)`                                           | 检查错误，如果错误不为 `nil` 则触发 panic。没有返回值。               | 无                                   |
+| `C1[T1 comparable](v1 T1, err error) T1`                  | 检查错误，检查 `v1` 是否为零值，如果不是零值，返回 `v1`。               | 返回类型为 `T1` 的 `v1`                   |
+| `C2[T1, T2 comparable](v1 T1, v2 T2, err error) (T1, T2)` | 检查错误，检查 `v1` 和 `v2` 是否为零值，如果不是零值，返回 `v1` 和 `v2`。 | 返回类型为 `T1` 的 `v1` 和 类型为 `T2` 的 `v2` |
+
+---
 
 ## 许可协议
 
