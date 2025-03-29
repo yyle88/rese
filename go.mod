@@ -4,8 +4,8 @@ go 1.22.8
 
 require (
 	github.com/stretchr/testify v1.10.0
-	github.com/yyle88/done v1.0.23
-	github.com/yyle88/must v0.0.19
+	github.com/yyle88/done v1.0.24
+	github.com/yyle88/must v0.0.20
 )
 
 require (
