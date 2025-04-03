@@ -74,15 +74,19 @@ import (
 	"github.com/yyle88/rese"
 )
 
-func getSomething() (*int64, error) {
-	v := int64(42)
+type SomeType struct {
+	Rank int64
+}
+
+func getSomething() (*SomeType, error) {
+	v := &SomeType{Rank: 42}
 	return &v, nil
 }
 
 func main() {
 	// Using P1 to check error and ensure non-nil pointer
 	ptr := rese.P1(getSomething())
-	fmt.Println(*ptr) // Outputs: 42
+	fmt.Println(ptr.Rank) // Outputs: 42
 }
 ```
 
