@@ -147,7 +147,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 Welcome to contribute to this project by submitting pull requests or reporting issues.
 
-If you find this package helpful, give it a star on GitHub!
+If you find this package valuable, give me some stars on GitHub! Thank you!!!
 
 **Thank you for your support!**
 
@@ -155,7 +155,7 @@ If you find this package helpful, give it a star on GitHub!
 
 ---
 
-## Starring
+## GitHub Stars
 
 [![starring](https://starchart.cc/yyle88/rese.svg?variant=adaptive)](https://starchart.cc/yyle88/rese)
 
